@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.scss"],"names":[],"mappings":"AAAA,IAAA,CACI,UAAA,CAAA,IAAA,CACA,KAAA,CAAA,UAAA,CACH","file":"../style.css","sourcesContent":["body {\r\n    background: gray;\r\n    color: whitesmoke;\r\n}"]}

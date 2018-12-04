@@ -1,0 +1,3 @@
+open console and execute below command.
+
+.\node_modules\.bin\gulp
