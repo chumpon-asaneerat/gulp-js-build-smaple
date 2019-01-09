@@ -7,15 +7,22 @@ var watch = require('gulp-watch');
 var sourcemaps = require('gulp-sourcemaps');
 var connect = require('gulp-connect');
 
+var debug = require('gulp-debug');
+var sort = require('gulp-sort');
+var insert = require('gulp-insert');
+var riot = require('gulp-riot');
+
 var src = {
     js: 'src/js/**/*.js',
     sass: 'src/sass/**/*.scss',
+    riotTags: 'src/riot/tags/**/*.tag',
     html: './*.html'
 };
 
 var dest = {
     js: 'dist/js/',
     bundlejs: 'app.min.js',
+    riotTagjs: 'tags.min.js',
     css: 'dist/css/',
     maps: 'maps/'
 };
@@ -49,6 +56,20 @@ gulp.task('js', function() {
         .pipe(connect.reload());
 });
 
+gulp.task('riot-tags', function() {
+    return gulp.src(src.riotTags)
+        .pipe(debug())
+        .pipe(riot({ compact: true }))
+        .pipe(sourcemaps.init())
+        .pipe(concat(dest.riotTagjs))        
+        .pipe(uglify())
+        .pipe(sourcemaps.write(dest.maps))
+        .pipe(debug())
+        .pipe(gulp.dest(dest.js))
+        .pipe(debug())
+        .pipe(connect.reload());
+});
+
 gulp.task('html', function() {
     gulp.src(src.html)
         .pipe(connect.reload());
@@ -58,6 +79,7 @@ gulp.task('watch', function() {
     gulp.watch(src.sass, ['sass']);
     gulp.watch(src.js, ['js']);
     gulp.watch(src.html, ['html']);
+    gulp.watch(src.riotTags, ['riot-tags']);
 });
 
 gulp.task('livereload', function() {
@@ -65,4 +87,4 @@ gulp.task('livereload', function() {
         .pipe(connect.reload());
 });
 
-gulp.task('default', ['sass', 'server', 'watch', 'livereload', 'js']);
+gulp.task('default', ['sass', 'server', 'watch', 'livereload', 'js', 'riot-tags']);
