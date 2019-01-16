@@ -1,3 +1,7 @@
 open console and execute below command.
 
 .\node_modules\.bin\gulp
+
+if install node 10.x required to rebuild to fixed missing binding module
+
+npm rebuild node-sass
