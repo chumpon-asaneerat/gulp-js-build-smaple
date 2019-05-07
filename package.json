@@ -20,7 +20,7 @@
     "@types/gulp-debug": "^2.0.31",
     "@types/gulp-insert": "^0.5.7",
     "@types/gulp-sort": "0.0.32",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-connect": "^5.7.0",
